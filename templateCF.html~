@@ -1,0 +1,20 @@
+<div class="html-element-wrapper"><div><p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}" /></p><p style="text-align: center;">Answer the following questions according to the above image.</p></div></div><cml:text id="" validates="required positiveInteger integerRange:{min:1,max:100}" label="{{question}}" name="streetwidth" class="" /> 
+<p id="tip1" hidden="true"> {{tip}} </p> 
+<ol id="list1">
+</ol>
+<cml:text id="" validates="required currencyDollar" label="What is the total amount of tax in this receipt?" name="tax" class="" /><cml:text id="" validates="required positiveInteger" label="How many items are on this receipt?" name="num_items" class="" /><cml:text id="" validates="required date" label="What is the date of this receipt?" name="date" class="" instructions="Date format must be: MM/DD/YYYY" />
+
+
+<script>
+
+    var teste = document.getElementById('tip1').firstChild.wholeText;
+    //Test tip length!
+    var valor = teste.split(";");
+	alert("Valor: " + valor[0]);
+	var list = document.getElementById('list1');
+    for(var i=0; i<valor.length; i++) {
+        var entry = document.createElement('li');
+				entry.appendChild(document.createTextNode(valor[i]));
+				list.appendChild(entry);
+    }
+</script>
