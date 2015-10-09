@@ -1,0 +1,79 @@
+<style>
+#picture
+{
+float: right;
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+</style>
+
+<p style="text-align: center;"><h1>Answer each of the following questions according to the image displayed next to them</h1></p>     
+
+<hr>
+<h1> Question 1 </h1>
+<br>
+  <h2> {{question1}} according to the image</h2>
+  <h3> Question instructions </h3>
+  
+      <p id="tip1" hidden="true">{{tip1}}</p>
+			<ul id="list1" style="max-width:90%; word-wrap:break-word;">
+			</ul>
+			<br />
+
+<div class="html-element-wrapper" >  
+       <div>    
+          <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+       </div>
+     </div>
+
+        <cml:text id="" validates="required integerRange:{min:0,max:200}" label="Your answer is:" name="question1" class="" gold="true" ></cml:text>
+    
+
+  <hr>
+<h1> Question 2 </h1>
+<br>  
+  <h2> {{question2}} according to the image</h2>
+  <h3> Question instructions </h3>
+    <p id="tip2" hidden="true">{{tip2}}</p>
+			<ul id="list2" style="max-width:90%; word-wrap:break-word;">
+			</ul>
+			<br />
+    
+    
+<div class="html-element-wrapper" >  
+    <div>         
+      <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+      </div>
+    </div>
+
+      <cml:checkboxes name="seeside" label="Which sides of the street are visible in the photo?" strict="true" validates="required" gold="true">
+        <cml:checkbox label="Left" value="left" gold="true" />
+  			<cml:checkbox label="Right" gold="true" />
+      </cml:checkboxes>
+			<cml:text id="" validates="required integerRange:{min:0,max:200}" label="For the left side your answer is:" name="question2__left_side" class="" gold="true"  only-if="seeside:[0]"></cml:text>
+			<cml:text id="" validates="required integerRange:{min:0,max:200}" label="For the right side your answer is:" name="question2__right_side" class="" gold="true"  only-if="seeside:[1]"></cml:text>
+			
+
+    <hr>
+<h1> Question 3 </h1>
+<br>
+      <h2> {{question3}} according to the image</h2>
+      <p id="tip3" hidden="true">{{tip3}}</p>
+      <ul id="list3" style="max-width:90%; word-wrap:break-word;">
+      </ul>
+      
+<div class="html-element-wrapper" >  
+    <div>
+      <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+      </div>
+    </div>
+			<cml:text label="Your answer is:" name="question3" validates="required integerRange:{min:0,max:200}" gold="true" ></cml:text>
+      

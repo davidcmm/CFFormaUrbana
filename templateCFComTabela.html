@@ -1,0 +1,251 @@
+<style>
+#picture
+{
+float: right;
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+</style>
+
+<p style="text-align: center;"><h1>Answer each of the following questions according to the image displayed next to them</h1></p>     
+
+<hr>
+<h1> Question 1 </h1>
+<br>
+  <table>
+  <tr>
+      <td width="50%">
+	  <h2> {{question1}} according to the image</h2>
+	  <h3> Question instructions </h3>
+	  
+	      <p id="tip1" hidden="true">{{tip1}}</p>
+				<ul id="list1" style="max-width:90%; word-wrap:break-word;">
+				</ul>
+				<br />
+		<cml:text id="" validates="required integerRange:{min:0,max:200}" label="Your answer is:" class="" gold="true" name="question1"></cml:text>
+      </td>
+  
+      <td width="50%">
+	    <div class="html-element-wrapper" >  
+	       <div>    
+		  <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+	       </div>
+	     </div>
+      </td>   
+      
+    </tr>
+  </table>
+  
+   
+
+  <hr>
+<h1> Question 2 </h1>
+  <br>
+    <table>
+    <tr>
+      <td width="50%">
+	  <h2> {{question2}} according to the image</h2>
+	  <h3> Question instructions </h3>
+	    <p id="tip2" hidden="true">{{tip2}}</p>
+				<ul id="list2" style="max-width:90%; word-wrap:break-word;">
+				</ul>
+		<cml:checkboxes name="seeside" label="Which sides of the street are visible in the photo?" strict="true" validates="required" gold="true">
+		<cml:checkbox label="Left" value="left" gold="true" />
+	  			<cml:checkbox label="Right" gold="true" />
+	      </cml:checkboxes>
+				<cml:text id="" validates="required integerRange:{min:0,max:200}" label="For the left side your answer is:" class="" gold="true" name="question2__left_side" only-if="seeside:[0]"></cml:text>
+				<cml:text id="" validates="required integerRange:{min:0,max:200}" label="For the right side your answer is:" class="" gold="true" name="question2__right_side" only-if="seeside:[1]"></cml:text>
+				<br />
+      </td>
+    
+      <td>
+	<div class="html-element-wrapper" >  
+	    <div>         
+	      <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+	      </div>
+	    </div>
+    </td>   
+   </tr>
+</table>
+
+    <hr>
+<h1> Question 3 </h1>
+    <br>  
+      <table>
+    	<tr>
+      	 <td width="50%">
+	      <h2> {{question3}} according to the image</h2>
+	      <p id="tip3" hidden="true">{{tip3}}</p>
+	      <ul id="list3" style="max-width:90%; word-wrap:break-word;">
+	      </ul>
+	      <cml:text label="Your answer is:" validates="required integerRange:{min:0,max:200}" gold="true" name="question3"></cml:text>
+      </td>
+      <td>
+	<div class="html-element-wrapper" >  
+	    <div>
+	      <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+	      </div>
+	    </div>
+      </td>   
+    </tr>
+   </table>
+    
+<script>
+//Getting tip value and formating its presentation
+var tipValue = document.getElementById('tip1').firstChild.wholeText;
+var values = tipValue.split("|");
+var list = document.getElementById('list1');
+for(var i=0; i<values.length; i++) {
+  var entry = document.createElement('li');
+  entry.appendChild(document.createTextNode(values[i]));
+  list.appendChild(entry);
+}
+
+tipValue = document.getElementById('tip2').firstChild.wholeText;
+values = tipValue.split("|");
+list = document.getElementById('list2');
+for(var i=0; i<values.length; i++) {
+  var entry = document.createElement('li');
+  entry.appendChild(document.createTextNode(values[i]));
+  list.appendChild(entry);
+}
+     
+tipValue = document.getElementById('tip3').firstChild.wholeText;
+values = tipValue.split("|");
+list = document.getElementById('list3');
+for(var i=0; i<values.length; i++) {
+  var entry = document.createElement('li');
+  entry.appendChild(document.createTextNode(values[i]));
+  list.appendChild(entry);
+}
+
+//Configuring show or hide for tips related to questions for each side
+/*
+var elements = document.getElementsByTagName("input");
+for (var i=0; i<elements.length; i++) {
+  	var element = elements[i];
+  	if (element.type == "checkbox"){
+      	element.addEventListener('change', function(event) {
+          var allMarked = false;
+          var allElements = document.getElementsByTagName("input");
+          for (var j=0; j<allElements.length; j++) {
+              var currentElement = allElements[j];
+              if (currentElement.type == "checkbox"){
+                 allMarked = allMarked || currentElement.checked;
+              } 
+          }
+                   
+          enableTips(allMarked);
+          
+	     });
+    }
+}
+
+function enableTips(enable){
+  
+  var element = document.getElementById('list2');
+  if (!enable){
+    element.hide();
+  } else if (enable) {
+    element.show();
+  }
+}*/
+
+
+//Validator
+var min = 0;
+var max = 200;
+
+// This block if/else block is used to hijack the functionality of an existing validator 
+if(!_cf_cml.digging_gold) {
+  CMLFormValidator.addAllThese([
+    ['integerRange', {
+      errorMessage: function(){
+        return ('Your answer should be a numeric value between ' + min + ' and ' + max + '!');
+      },
+      validate: function(element, props){
+        // METHOD_TO_VALIDATE must return true or false
+        return METHOD_TO_VALIDATE(element, props);
+      }
+    }]
+  ]);
+} else {
+  CMLFormValidator.addAllThese([
+   ['integerRange', {
+      validate: function(element,props){
+         return true;
+      }
+   }]          
+  ]);
+}
+
+ 
+// This is the method that will evaluate your validation
+// value is the user submitted content of the form element you are validating
+function METHOD_TO_VALIDATE(element, props) {
+  var value = element.value;
+  var dblVar = parseFloat(value);
+  if (!isNaN(dblVar) && value >= props.integerRange.min && value <= props.integerRange.max){
+  	return true;
+  }else{
+    return false;
+  }  
+}
+</script>
+
+
+
+---- Instruções
+
+<p>Help us to characterize the urban design of the city of Campina Grande, Paraíba, Brazil.</p>
+
+<h3>Overview</h3>
+
+<p>In this task you will be presented with &nbsp;image of the city of Campina Grande and asked to enter information about the urban design of the city. </p>
+
+<h3>We Provide</h3>
+
+<p>In this task we will provide an image of a place to be evaluated according to some questions.</p>
+
+<h3>Process - for each question</h3>
+
+<ol>
+  <li>Read the instructions for the question</li>
+
+  <li>Examine&nbsp;the&nbsp;image&nbsp;displayed&nbsp;next&nbsp;to&nbsp;it</li>
+
+  <li>Answer the question</li>
+</ol>
+
+<h3>Tips</h3>
+
+<ul>
+  <li>The image to be evaluated is displayed next to each question to make your job easier;</li>
+
+  <li>Some&nbsp;questions&nbsp;must&nbsp;be&nbsp;answered&nbsp;considering&nbsp;the&nbsp;whole&nbsp;image;</li>
+
+  <li>Other&nbsp;questions&nbsp;must&nbsp;be&nbsp;answered&nbsp;considering each side&nbsp;of&nbsp;the&nbsp;street separately.&nbsp;For&nbsp;these&nbsp;questions,&nbsp;we&nbsp;firstly&nbsp;ask&nbsp;you&nbsp;to&nbsp;answer&nbsp;"Which&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;are&nbsp;visible&nbsp;in&nbsp;the&nbsp;photo?".&nbsp;Answer&nbsp;the&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;that&nbsp;are&nbsp;visible.&nbsp;Consider&nbsp;the&nbsp;"left&nbsp;side"&nbsp;of&nbsp;the&nbsp;street&nbsp;as&nbsp;your&nbsp;left&nbsp;side&nbsp;and&nbsp;the&nbsp;"right&nbsp;side"&nbsp;of&nbsp;the&nbsp;street&nbsp;as&nbsp;your&nbsp;right&nbsp;side.&nbsp;If&nbsp;more&nbsp;than&nbsp;one&nbsp;of&nbsp;these&nbsp;questions&nbsp;exist,&nbsp;only&nbsp;the&nbsp;first&nbsp;of&nbsp;them&nbsp;that&nbsp;is&nbsp;displayed&nbsp;will&nbsp;ask&nbsp;you&nbsp;to&nbsp;choose&nbsp;the&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;that are&nbsp;visible;</li>
+
+  <li>Questions &nbsp;involving proportions&nbsp;must&nbsp;be&nbsp;answered&nbsp;with&nbsp;values&nbsp;between&nbsp;0&nbsp;and&nbsp;1;</li>
+
+  <li>Questions&nbsp;involving&nbsp;the&nbsp;evaluation&nbsp;of&nbsp;places&nbsp;condition&nbsp;must&nbsp;be&nbsp;answered&nbsp;with&nbsp;a&nbsp;score&nbsp;between&nbsp;1&nbsp;(more&nbsp;negative)&nbsp;and&nbsp;5&nbsp;(more&nbsp;positive);</li>
+
+  <li>Questions that involve counting elements must be answered with values greater than or equal to 0.</li>
+</ul>
+
+<h3>Summary</h3>
+
+<p>Characterize aspects of the urban design of streets of Campina Grande, Paraíba</p>
+
+<p><br>
+</p>
+
+<h3>Thank you for your careful work on this task!</h3>
