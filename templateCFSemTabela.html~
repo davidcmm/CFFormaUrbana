@@ -1,0 +1,198 @@
+<style>
+#picture
+{
+float: right;
+}
+
+.btn-inverse{
+visibility: hidden;
+}
+
+</style>
+
+<h1>Instructions</h1>
+  <p>Help us to characterize the urban design of the city of Campina Grande, Paraíba, Brazil.</p>
+<h2>Overview</h2>
+<p>In this task you will be presented with an image of the city of Campina Grande and asked to enter information about the urban design of the city. </p>
+<h2>We Provide</h2>
+<p>In this task we will provide an image to be evaluated.</p>
+<h2>Process</h2>
+<ol>
+  <li>Examine the image presented</li>
+  <li>Answer the questions presented considering the image</li>
+</ol>
+<h2>Tips</h2>
+<ul>
+  <li>Some questions must be answered considering the whole image. Other questions must be answered considering one side of the street. In order to be presented to the correct questions, evaluate the image and if the question "Which sides of the street are visible in the photo?" is displayed, answer the sides of the street that are visible. Consider the "left side" of the street as your left side and the "right side" of the street as your right side.</li>
+
+ <li>For questions related to each side of the street, the questions show indications of the side of the street to be considered in the answer: "left side" or "right side". </li>
+  <li>Questions that must be answered considering only one side of the street also present the text "on each side of the street"</li>
+  <li>Questions  involving proportions must be answered with values between 0 and 1</li>
+ <li>Questions involving the evaluation of places condition must be answered with a score between 1 (more negative) and 5 (more positive)</li>
+  <li>Questions that involve counting elements must be answered with values greater than or equal to 0</li>
+</ul>
+<h2>Summary</h2>
+<p>Characterize aspects of the urban design of streets of Campina Grande, Paraíba</p>
+<h2>Thank you for your careful work on this task!</h2>
+  
+  <p> <br> <br> </p>
+      
+    <h1>Task!</h1>
+
+<div class="html-element-wrapper" >  
+    
+<table>
+  <tr>
+    <td valign="top">
+      <br> <br> <br> <br> <br>
+      <p style="text-align: center, top;">Answer the following questions according to image bellow.</p>      
+      <img class="fr-fin fr-dii" id="" src="{{image_url}}" style="position: absolute; width: 30%"/>
+    </td>
+    <td width="50%">
+      
+      <cml:checkboxes name="seeside" label="Which sides of the street are visible in the photo?" strict="true" validates="required" gold="true">
+        <cml:checkbox label="Left" value="left" gold="true" />
+  			<cml:checkbox label="Right" gold="true" />
+      </cml:checkboxes>
+      <cml:text id="" validates="required integerRange:{min:0,max:200}" label="{{question1}}" class="" gold="true" name="question1"></cml:text>
+			<p id="tip1" hidden="true">{{tip1}}</p>
+			<ul id="list1" style="max-width:90%; word-wrap:break-word;">
+			</ul>
+			<br />
+			<cml:text id="" validates="required integerRange:{min:0,max:200}" label="{{question2}} - left side" class="" gold="true" name="question2__left_side" only-if="seeside:[0]"></cml:text>
+			<cml:text id="" validates="required integerRange:{min:0,max:200}" label="{{question2}} - right side" class="" gold="true" name="question2__right_side" only-if="seeside:[1]"></cml:text>
+			<p id="tip2" hidden="true">{{tip2}}</p>
+			<ul id="list2" style="max-width:90%; word-wrap:break-word;">
+			</ul>
+			<br />
+			<cml:text label="{{question3}}" validates="required integerRange:{min:0,max:200}" gold="true" name="question3"></cml:text>
+      <p id="tip3" hidden="true">{{tip3}}</p>
+      <ul id="list3" style="max-width:90%; word-wrap:break-word;">
+      </ul>
+      
+      
+    </td>
+  </tr>
+</table>
+</div>
+
+
+
+//Getting tip value and formating its presentation
+var tipValue = document.getElementById('tip1').firstChild.wholeText;
+var values = tipValue.split("|");
+var list = document.getElementById('list1');
+for(var i=0; i<values.length; i++) {
+  var entry = document.createElement('li');
+  entry.appendChild(document.createTextNode(values[i]));
+  list.appendChild(entry);
+}
+
+tipValue = document.getElementById('tip2').firstChild.wholeText;
+values = tipValue.split("|");
+list = document.getElementById('list2');
+for(var i=0; i<values.length; i++) {
+  var entry = document.createElement('li');
+  entry.appendChild(document.createTextNode(values[i]));
+  list.appendChild(entry);
+}
+list.hide();
+     
+tipValue = document.getElementById('tip3').firstChild.wholeText;
+values = tipValue.split("|");
+list = document.getElementById('list3');
+for(var i=0; i<values.length; i++) {
+  var entry = document.createElement('li');
+  entry.appendChild(document.createTextNode(values[i]));
+  list.appendChild(entry);
+}
+
+//Configuring show or hide for tips related to questions for each side
+var elements = document.getElementsByTagName("input");
+for (var i=0; i<elements.length; i++) {
+  	var element = elements[i];
+  	if (element.type == "checkbox"){
+      	element.addEventListener('change', function(event) {
+          var allMarked = false;
+          var allElements = document.getElementsByTagName("input");
+          for (var j=0; j<allElements.length; j++) {
+              var currentElement = allElements[j];
+              if (currentElement.type == "checkbox"){
+                 allMarked = allMarked || currentElement.checked;
+              } 
+          }
+                   
+          enableTips(allMarked);
+          
+	     });
+    }
+}
+
+function enableTips(enable){
+  
+  var element = document.getElementById('list2');
+  if (!enable){
+    element.hide();
+  } else if (enable) {
+    element.show();
+  }
+}
+
+
+//Validator
+var min = 0;
+var max = 200;
+
+// This block if/else block is used to hijack the functionality of an existing validator 
+if(!_cf_cml.digging_gold) {
+  CMLFormValidator.addAllThese([
+    ['integerRange', {
+      errorMessage: function(){
+        return ('Your answer should be a numeric value between ' + min + ' and ' + max + '!');
+      },
+      validate: function(element, props){
+        // METHOD_TO_VALIDATE must return true or false
+        return METHOD_TO_VALIDATE(element, props);
+      }
+    }]
+  ]);
+} else {
+  CMLFormValidator.addAllThese([
+   ['integerRange', {
+      validate: function(element,props){
+         return true;
+      }
+   }]          
+  ]);
+}
+
+ 
+// This is the method that will evaluate your validation
+// value is the user submitted content of the form element you are validating
+function METHOD_TO_VALIDATE(element, props) {
+  var value = element.value;
+  var dblVar = parseFloat(value);
+  if (!isNaN(dblVar) && value >= props.integerRange.min && value <= props.integerRange.max){
+  	return true;
+  }else{
+    return false;
+  }  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
