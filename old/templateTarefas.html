@@ -1,0 +1,140 @@
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<style>    
+  .streetViewChoice {
+      cursor: pointer;
+      border: 3px solid #fff;
+  }
+  .streetViewChoice:hover, .streetViewChoice.hovered {
+    cursor: pointer;
+    border: 3px solid #FF4500;
+  }
+  .streetViewChoice:focus {
+    outline: none;
+  }
+  .streetViewChoice2 {
+    cursor: pointer;
+    border: 3px solid #fff;
+  }
+  .streetViewChoice2:hover,.streetViewChoice2.hovered {
+    cursor: pointer;
+    border: 3px solid #1E90FF;
+  }
+  .streetViewChoice2:focus {
+    outline: none;
+  }
+  .choice_button {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #4E4E4E;
+    background-color: #CFCFCF;
+    text-align: center;
+    border-radius: 4px;
+    border: 2px solid #fff;
+    margin-top: 20px;
+    -webkit-transition: color,border 0.2s ease-in;
+    -moz-transition: color,border 0.2s ease-in;
+    -o-transition: color,border 0.2s ease-in;
+    transition: color,border 0.2s ease-in;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+  }
+  .choice_button:hover {
+    border: 2px solid #000000;
+    text-decoration: none;
+    color: black;
+  }
+  .choice_button:focus {
+    outline: none;
+  }
+  .mybadge {
+    color: #fff !important;
+    background-color: #959595;
+    border: 1px solid #959595;
+    margin: 0 3px 3px 0;
+    padding: 0 6px 0 3px;
+    display: inline-block;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 24px;
+    border-radius: 6px;
+  }  
+  .badge1, .badge2, .badge3 {
+    display: inline-block;
+    width: 6px;
+    height: 11px;
+    overflow: hidden;
+    line-height: inherit;
+    background-position: -40px -1034px;
+    vertical-align: text-bottom;
+    margin: 0 1px 1px 3px;
+  }  
+</style>
+
+<!-- https://ericscrivner.me/2015/04/mechanical-python-guide-1/ --> 
+
+<h3 class="modal-title" id="myModalLabel">The questions should be answered considering the photo presented. Read the questions, the tips and analyse the photo to ellaborate your answers.</h3>
+
+<div class="col-xs-6 col-lg-6 text-center"><!-- Start of Photo DIV (column) -->
+      <a id="photo-link" href="#">  
+        <img id="photo" src="${photo}">
+      </a>
+</div>
+
+<form>
+<ol>
+	<li>  ${question1} </li>
+	<ul><li>  ${tip1} </li></ul>
+	<select name="${name1}" multiple>
+	<option> Left side </option>
+	<option> Right side </option>
+	<option> Median </option>
+	</select>
+	<div class="checkbox">
+		  <input name="${name1}" type="checkbox" id="left" value="Left" />
+		  <font size="3">Left Side</font>
+		  <input name="${name1}" type="checkbox" id="median" value="Median" />
+		  <font size="3">Median</font>
+		  <input name="${name1}" type="checkbox" id="right" value="Right" />
+		  <font size="3">Right Side</font>
+        </div>
+	<br> 	<br>
+	<li>  ${question2} </li>
+	<ul><li>  ${tip2} </li></ul>
+	<input id="${name2}" type="text" size=3>
+	<br> 	<br>
+	<li>  ${question3} </li>
+	<ul><li>  ${tip3} </li></ul>
+	<input type="radio" id="yes" name="${name3}" value="Yes"/> <label for="yes">Yes</label>
+	<input type="radio" id="no" name="${name3}" value="No"/> <label for="no">No</label>
+	<br> 	<br>
+	<li>  ${question4} </li>
+	<ul><li>  ${tip4} </li></ul>
+	<br>
+	1<input type="range" id="${name4}" name="Likert" value="3" min="1" max="5">5
+</ol>
+<input type="submit" id="submitButton" value="Submeter"/> 
+</form>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script>
+		//$('#submitButton').click(function() { 
+		$('#submitButton').off('click').on('click', function(evt) {
+			alert("Entrei");
+			if ($('#name1').val() == '' || $('#name2').val() == '' || ($('#yes').checked == false && $('#no').checked == false)  || $('#name4').val() == ''  ) { 
+				alert('You should answer all questions before submitting!'); 
+				return false; 
+			} 
+			return true; 
+		}); 
+</script>
+            
+            
+            

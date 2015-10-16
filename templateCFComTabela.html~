@@ -13,47 +13,7 @@ hr {
     border-style: inset;
     border-width: 1px;
 } 
-
 </style>
-
-<div class="html-element-wrapper" >  
-    
-<table>
-  <tr>
-    <td valign="top">
-      <br> <br> <br> <br> <br>
-      <p style="text-align: center, top;">Answer the following questions according to image bellow.</p>      
-      <img class="fr-fin fr-dii" id="" src="{{image_url}}" style="position: absolute; width: 30%"/>
-    </td>
-    <td width="50%">
-      
-      <cml:checkboxes name="seeside" label="Which sides of the street are visible in the photo?" strict="true" validates="required" gold="true">
-        <cml:checkbox label="Left" value="left" gold="true" />
-  			<cml:checkbox label="Right" gold="true" />
-      </cml:checkboxes>
-      <cml:text id="" validates="required integerRange:{min:0,max:200}" label="{{question1}}" class="" gold="true" name="question1"></cml:text>
-			<p id="tip1" hidden="true">{{tip1}}</p>
-			<ul id="list1" style="max-width:90%; word-wrap:break-word;">
-			</ul>
-			<br />
-			<cml:text id="" validates="required integerRange:{min:0,max:200}" label="{{question2}} - left side" class="" gold="true" name="question2__left_side" only-if="seeside:[0]"></cml:text>
-			<cml:text id="" validates="required integerRange:{min:0,max:200}" label="{{question2}} - right side" class="" gold="true" name="question2__right_side" only-if="seeside:[1]"></cml:text>
-			<p id="tip2" hidden="true">{{tip2}}</p>
-			<ul id="list2" style="max-width:90%; word-wrap:break-word;">
-			</ul>
-			<br />
-			<cml:text label="{{question3}}" validates="required integerRange:{min:0,max:200}" gold="true" name="question3"></cml:text>
-      <p id="tip3" hidden="true">{{tip3}}</p>
-      <ul id="list3" style="max-width:90%; word-wrap:break-word;">
-      </ul>
-      
-      
-    </td>
-  </tr>
-</table>
-</div>
-
-
 
 <p style="text-align: center;"><h1>Answer each of the following questions according to the image displayed next to them</h1></p>     
 
@@ -139,7 +99,6 @@ hr {
    </table>
     
 <script>
->>>>>>> 2a59f8c9563ee1ef3592bf13388172997c11f52f
 //Getting tip value and formating its presentation
 var tipValue = document.getElementById('tip1').firstChild.wholeText;
 var values = tipValue.split("|");
@@ -158,7 +117,6 @@ for(var i=0; i<values.length; i++) {
   entry.appendChild(document.createTextNode(values[i]));
   list.appendChild(entry);
 }
-//list.hide();
      
 tipValue = document.getElementById('tip3').firstChild.wholeText;
 values = tipValue.split("|");
@@ -171,7 +129,6 @@ for(var i=0; i<values.length; i++) {
 
 //Configuring show or hide for tips related to questions for each side
 /*
->>>>>>> 2a59f8c9563ee1ef3592bf13388172997c11f52f
 var elements = document.getElementsByTagName("input");
 for (var i=0; i<elements.length; i++) {
   	var element = elements[i];
@@ -200,9 +157,6 @@ function enableTips(enable){
   } else if (enable) {
     element.show();
   }
-<<<<<<< HEAD
-}
-=======
 }*/
 
 
@@ -245,7 +199,6 @@ function METHOD_TO_VALIDATE(element, props) {
     return false;
   }  
 }
-
 </script>
 
 
@@ -279,7 +232,7 @@ function METHOD_TO_VALIDATE(element, props) {
 
   <li>Some&nbsp;questions&nbsp;must&nbsp;be&nbsp;answered&nbsp;considering&nbsp;the&nbsp;whole&nbsp;image;</li>
 
-  <li>Other&nbsp;questions&nbsp;must&nbsp;be&nbsp;answered&nbsp;considering each side&nbsp;of&nbsp;the&nbsp;street separately.&nbsp;For&nbsp;these&nbsp;questions,&nbsp;we&nbsp;firstly&nbsp;ask&nbsp;you&nbsp;to&nbsp;answer&nbsp;"Which&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;are&nbsp;visible&nbsp;in&nbsp;the&nbsp;photo?".&nbsp;Answer&nbsp;the&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;that&nbsp;are&nbsp;visible.&nbsp;Consider&nbsp;the&nbsp;"left&nbsp;side"&nbsp;of&nbsp;the&nbsp;street&nbsp;as&nbsp;your&nbsp;left&nbsp;side&nbsp;and&nbsp;the&nbsp;"right&nbsp;side"&nbsp;of&nbsp;the&nbsp;street&nbsp;as&nbsp;your&nbsp;right&nbsp;side.&nbsp;If&nbsp;more&nbsp;than&nbsp;one&nbsp;of&nbsp;these&nbsp;questions&nbsp;exist,&nbsp;only&nbsp;the&nbsp;first&nbsp;of&nbsp;them&nbsp;that&nbsp;is&nbsp;displayed&nbsp;will&nbsp;ask&nbsp;you&nbsp;to&nbsp;choose&nbsp;the&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;that are&nbsp;visible;</li>
+  <li>Other&nbsp;questions&nbsp;must&nbsp;be&nbsp;answered&nbsp;considering each side&nbsp;of&nbsp;the&nbsp;street separately.&nbsp;For&nbsp;these&nbsp;questions,&nbsp;we&nbsp;firstly&nbsp;ask&nbsp;you&nbsp;to&nbsp;answer&nbsp;"Which&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;are&nbsp;visible&nbsp;in&nbsp;the&nbsp;photo?".&nbsp;Answer&nbsp;the&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;that&nbsp;are&nbsp;visible.&nbsp;Consider&nbsp;the&nbsp;"left&nbsp;side"&nbsp;of&nbsp;the&nbsp;street&nbsp;as&nbsp;your&nbsp;left&nbsp;side&nbsp;and&nbsp;the&nbsp;"right&nbsp;side"&nbsp;of&nbsp;the&nbsp;street&nbsp;as&nbsp;your&nbsp;right&nbsp;side.&nbsp;If&nbsp;more&nbsp;than&nbsp;one&nbsp;of&nbsp;these&nbsp;questions&nbsp;exist,&nbsp;only&nbsp;the&nbsp;first&nbsp;of&nbsp;them&nbsp;that&nbsp;is&nbsp;displayed&nbsp;will&nbsp;ask&nbsp;you&nbsp;to&nbsp;choose&nbsp;the&nbsp;sides&nbsp;of&nbsp;the&nbsp;street&nbsp;that&nbsp;is&nbsp;visible;</li>
 
   <li>Questions &nbsp;involving proportions&nbsp;must&nbsp;be&nbsp;answered&nbsp;with&nbsp;values&nbsp;between&nbsp;0&nbsp;and&nbsp;1;</li>
 

@@ -1,0 +1,130 @@
+<h1 style="text-align: center;"> Examples to be used as references</h1>
+
+<h2 style="text-align: left;"> Example 1 </h2>
+<p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="https://contribua.org/bairros/norte/centro/Rua_Felix_Araujo__132__90.jpg"/></p>
+<ul>
+  <li> Both sides of the street are visible (left and right); </li>
+  <li> {{question1}}. <b>Expected answers: 28, 32</b>
+    <ul> <li> We can interpret two situations: one travel line in the middle of the street and two parking lanes (total of 28 feet) - more probable; two travel lanes and one parking lane in one side of the streets (total of 32 feet) </li>  </ul>
+  </li>
+  <li>{{question2}} - left side. <b>Expected answers: 3, 4</b>
+    <ul> <li> The sidewalk is quite short, comparing it to a parking lane it is smaller than a parking lane. Considering the width of the red car (a parking lane) it is almost half of this width </li>  </ul>
+      </li>
+  <li> {{question2}} - right side. <b>Expected answers: 3, 4</b>
+    <ul> <li> The sidewalk is quite short, comparing it to a parking lane it is smaller than a parking lane. Considering the width of the red car (a parking lane) it is almost half of this width </li>  </ul>
+      </li>
+  <li> {{question3}}. <b>Expected answers: 0</b>
+    <ul> <li> There is no public art in the picture!; </li>  </ul>
+      </li>
+</ul>
+<hr>
+<br>
+<h2 style="text-align: left;"> Example 2 </h2>
+<p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="https://contribua.org/bairros/oeste/liberdade/Avenida_Assis_Chateaubriand__1334__0.jpg"/></p>
+<ul>
+  <li> Both sides of the street are visible (left and right); </li>
+  <li> {{question1}}. <b>Expected answers: 48 </b>
+    <ul> <li> The median strip is not more than 50 feet (15.24 m), so we can estimate two travel lanes in the right (24 feet) and two other travel lanes in the left (24 feet) </li>  </ul>
+  </li>
+  <li>{{question2}} - left side. <b>Expected answers: 8, 10, 12</b>
+    <ul> <li> You can see a truck parked in the left. If you consider a truck and that a typical parking lane is sufficient for a truck your answer should be 8 feet (2.43 m).  You can also consider that larger trucks may have widths from around 10 (3.04 m) to 12 feet (3.65 m)  </li>  </ul>
+      </li>
+  <li> {{question2}} - right side. <b>Expected answers: 8, 10, 12</b>
+    <ul> <li> The sidewalk seems to have almost the same width of the left side sidewalk </li>  </ul>
+      </li>
+  <li> {{question3}}. <b>Expected answers: 0</b>
+    <ul> <li> There is no public art in the picture! </li>  </ul>
+      </li>
+</ul>
+
+<p><h1  style="text-align: center;">Answer each of the following questions according to the image displayed next to them</h1></p> 
+
+<hr>
+<h1> Question 1 </h1>
+<br>
+  <table>
+    <tr>
+      <td width="40%">
+  <h2> {{question1}} according to the image</h2>
+  <h3> Question instructions </h3>
+      <p id="tip1" hidden="true">{{tip1}}</p>
+			<ul id="list1" style="max-width:90%; word-wrap:break-word;">
+			</ul>
+			<br />
+        <cml:text id="" validates="required integerRange:{min:0,max:200}" label="Your answer is:" class="" gold="true" name="question1"></cml:text>
+      </td>
+  
+      <td width="60%">
+        <div class="html-element-wrapper" >  
+         <div>    
+          <p style="text-align: center;"><img class="fr-fin fr-dii" src="{{image_url}}"/></p>
+         </div>
+         </div>
+      </td>   
+      
+    </tr>
+  </table>
+  
+   
+
+  <hr>
+<h1> Question 2 </h1>
+  <br>
+    <table>
+       <tr>
+        <td width="40%">
+          <h2> {{question2}} according to the image</h2>
+          <h3> Question instructions </h3>
+            <p id="tip2" hidden="true">{{tip2}}</p>
+              <ul id="list2" style="max-width:90%; word-wrap:break-word;">
+              </ul>
+          <br>
+                <cml:checkboxes name="seeside" label="Which sides of the street are visible in the photo?" strict="true" validates="required" gold="true">
+                <cml:checkbox label="Left" value="left" gold="true" />
+                <cml:checkbox label="Right" gold="true" />
+              </cml:checkboxes>
+              <cml:text id="" validates="required integerRange:{min:0,max:200}" label="For the left side your answer is:" class="" gold="true" name="question2__left_side" only-if="seeside:[0]"></cml:text>
+              <cml:text id="" validates="required integerRange:{min:0,max:200}" label="For the right side your answer is:" class="" gold="true" name="question2__right_side" only-if="seeside:[1]"></cml:text>
+              <br />
+       </td>
+      <td width="60%">
+        <div class="html-element-wrapper" >  
+            <div>         
+              <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+              </div>
+            </div>
+    </td>   
+    </tr>
+  </table>
+
+    <hr>
+<h1> Question 3 </h1>
+    <br>  
+  <table>
+    <tr>
+      <td width="40%">
+          <h2> {{question3}} according to the image</h2>
+          <h3> Question instructions </h3>
+          <p id="tip3" hidden="true">{{tip3}}</p>
+          <ul id="list3" style="max-width:90%; word-wrap:break-word;">
+          </ul>
+          <br>
+          <cml:text label="Your answer is:" validates="required integer integerRange:{min:0,max:200}" gold="true" name="question3"></cml:text>
+      </td>
+      <td width="60%">
+          <div class="html-element-wrapper" >  
+              <div>
+                <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+                </div>
+              </div>
+      </td>   
+    </tr>
+  </table>
+
+
+
+
+
+
+
+

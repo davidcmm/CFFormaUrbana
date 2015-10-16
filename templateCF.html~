@@ -17,44 +17,4 @@
 				entry.appendChild(document.createTextNode(valor[i]));
 				list.appendChild(entry);
     }
-
-// This block if/else block is used to hijack the functionality of an existing validator (specifically: yext_no_international_url)
-
-var min = 0;
-var max = 200;
-
-if(!_cf_cml.digging_gold) {
-  CMLFormValidator.addAllThese([
-    ['integerRange', {
-      errorMessage: function(){
-        return ('Your answer should be a numeric value between ' + min + ' and ' + max + '!');
-      },
-      validate: function(element, props){
-        // METHOD_TO_VALIDATE must return true or false
-        return METHOD_TO_VALIDATE(element, props);
-      }
-    }]
-  ]);
-} else {
-  CMLFormValidator.addAllThese([
-   ['integerRange', {
-      validate: function(element,props){
-         return true;
-      }
-   }]          
-  ]);
-}
- 
-// This is the method that will evaluate your validation
-// value is the user submitted content of the form element you are validating
-function METHOD_TO_VALIDATE(element, props) {
-  var value = element.value;
-  var dblVar = parseFloat(value);
-  if (!isNaN(dblVar) && value > props.integerRange.min && value < props.integerRange.max){
-  	return true;
-  }else{
-    return false;
-  }  
-}
-
 </script>

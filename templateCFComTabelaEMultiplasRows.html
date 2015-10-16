@@ -1,0 +1,223 @@
+<style>
+#picture
+{
+float: right;
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+</style>
+
+<p><h1  style="text-align: center;">Answer each of the following questions according to the image displayed next to them</h1></p> 
+
+<hr>
+<h1> Question 1 </h1>
+<br>
+  <table>
+    <tr>
+      <td width="40%">
+  <h2> {{question1}} according to the image</h2>
+  <h3> Question instructions </h3>
+      <p id="tip1" hidden="true">{{tip1}}</p>
+			<ul id="list1" style="max-width:90%; word-wrap:break-word;">
+			</ul>
+			<br />
+        <cml:text id="" validates="required integerRange:{min:0,max:200}" label="Your answer is:" class="" gold="true" name="question1"></cml:text>
+      </td>
+  
+      <td width="60%">
+        <div class="html-element-wrapper" >  
+         <div>    
+          <p style="text-align: center;"><img class="fr-fin fr-dii" src="{{image_url}}"/></p>
+         </div>
+         </div>
+      </td>   
+      
+    </tr>
+  </table>
+  
+   
+
+  <hr>
+<h1> Question 2 </h1>
+  <br>
+    <table>
+       <tr>
+        <td width="40%">
+          <h2> {{question2}} according to the image</h2>
+          <h3> Question instructions </h3>
+            <p id="tip2" hidden="true">{{tip2}}</p>
+              <ul id="list2" style="max-width:90%; word-wrap:break-word;">
+              </ul>
+          <br>
+                <cml:checkboxes name="seeside" label="Which sides of the street are visible in the photo?" strict="true" validates="required" gold="true">
+                <cml:checkbox label="Left" value="left" gold="true" />
+                <cml:checkbox label="Right" gold="true" />
+              </cml:checkboxes>
+              <cml:text id="" validates="required integerRange:{min:0,max:200}" label="For the left side your answer is:" class="" gold="true" name="question2__left_side" only-if="seeside:[0]"></cml:text>
+              <cml:text id="" validates="required integerRange:{min:0,max:200}" label="For the right side your answer is:" class="" gold="true" name="question2__right_side" only-if="seeside:[1]"></cml:text>
+              <br />
+       </td>
+      <td width="60%">
+        <div class="html-element-wrapper" >  
+            <div>         
+              <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+              </div>
+            </div>
+    </td>   
+    </tr>
+  </table>
+
+    <hr>
+<h1> Question 3 </h1>
+    <br>  
+  <table>
+    <tr>
+      <td width="40%">
+          <h2> {{question3}} according to the image</h2>
+          <h3> Question instructions </h3>
+          <p id="tip3" hidden="true">{{tip3}}</p>
+          <ul id="list3" style="max-width:90%; word-wrap:break-word;">
+          </ul>
+          <br>
+          <cml:text label="Your answer is:" validates="required integer integerRange:{min:0,max:200}" gold="true" name="question3"></cml:text>
+      </td>
+      <td width="60%">
+          <div class="html-element-wrapper" >  
+              <div>
+                <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}"/></p>
+                </div>
+              </div>
+      </td>   
+    </tr>
+  </table>
+
+<script>
+	//Load Jquery dynamically and increase image on popup: https://www.oficinadanet.com.br/artigo/css/galeria-css-com-efeito-lightbox; http://www.sitepoint.com/dynamically-load-jquery-library-javascript/
+
+	//Getting all list elements of the page
+	var elements = document.getElementsByTagName("ul");
+
+	//Getting tip value and formating its presentation
+	var tipValue = document.getElementById('tip1').firstChild.wholeText;
+	var values = tipValue.split("|");
+	//var list = document.getElementById('list1');
+	var listValues = [elements[1], elements[4], elements[7], elements[10]];
+	for (var j=0; j < listValues.length; j++){
+	  for(var i=0; i<values.length; i++) {
+	    var entry = document.createElement('li');
+	    entry.appendChild(document.createTextNode(values[i]));
+	    //list.appendChild(entry);
+	    listValues[j].appendChild(entry);
+	  }
+	}
+
+	tipValue = document.getElementById('tip2').firstChild.wholeText;
+	values = tipValue.split("|");
+	values[1] = "Consider the widths of parking and travel lanes as a reference";
+	//list = document.getElementById('list2');
+	listValues = [elements[2], elements[5], elements[8], elements[11]];
+	alert(listValues);
+	for (var j=0; j < listValues.length; j++){
+	  for(var i=0; i<values.length; i++) {
+	    var entry = document.createElement('li');
+	    entry.appendChild(document.createTextNode(values[i]));
+	    //list.appendChild(entry);
+	    listValues[j].appendChild(entry);
+	  }
+	}
+	     
+	tipValue = document.getElementById('tip3').firstChild.wholeText;
+	values = tipValue.split("|");
+	//list = document.getElementById('list3');
+	listValues = [elements[3], elements[6], elements[9], elements[12]];
+	for (var j=0; j < listValues.length; j++){
+	  for(var i=0; i<values.length; i++) {
+	    var entry = document.createElement('li');
+	    entry.appendChild(document.createTextNode(values[i]));
+	    //list.appendChild(entry);
+	    listValues[j].appendChild(entry);
+	  }
+	}
+	  
+
+	//Configuring show or hide for tips related to questions for each side
+	/*
+	var elements = document.getElementsByTagName("input");
+	for (var i=0; i<elements.length; i++) {
+	  	var element = elements[i];
+	  	if (element.type == "checkbox"){
+	      	element.addEventListener('change', function(event) {
+		  var allMarked = false;
+		  var allElements = document.getElementsByTagName("input");
+		  for (var j=0; j<allElements.length; j++) {
+		      var currentElement = allElements[j];
+		      if (currentElement.type == "checkbox"){
+		         allMarked = allMarked || currentElement.checked;
+		      } 
+		  }
+		           
+		  enableTips(allMarked);
+		  
+		     });
+	    }
+	}
+
+	function enableTips(enable){
+	  
+	  var element = document.getElementById('list2');
+	  if (!enable){
+	    element.hide();
+	  } else if (enable) {
+	    element.show();
+	  }
+	}*/
+
+
+	//Validator
+	var min = 0;
+	var max = 200;
+
+	// This block if/else block is used to hijack the functionality of an existing validator 
+	if(!_cf_cml.digging_gold) {
+	  CMLFormValidator.addAllThese([
+	    ['integerRange', {
+	      errorMessage: function(){
+		return ('Your answer should be a numeric value between ' + min + ' and ' + max + '!');
+	      },
+	      validate: function(element, props){
+		// METHOD_TO_VALIDATE must return true or false
+		return METHOD_TO_VALIDATE(element, props);
+	      }
+	    }]
+	  ]);
+	} else {
+	  CMLFormValidator.addAllThese([
+	   ['integerRange', {
+	      validate: function(element,props){
+		 return true;
+	      }
+	   }]          
+	  ]);
+	}
+
+	 
+	// This is the method that will evaluate your validation
+	// value is the user submitted content of the form element you are validating
+	function METHOD_TO_VALIDATE(element, props) {
+	  var value = element.value;
+	  var dblVar = parseFloat(value);
+	  if (!isNaN(dblVar) && value >= props.integerRange.min && value <= props.integerRange.max){
+	  	return true;
+	  }else{
+	    return false;
+	  }  
+	}
+</script>
