@@ -1,0 +1,173 @@
+<p><h1 style="text-align: center;">Answer each of the following questions according to the image displayed next to them</h1></p>       
+
+<hr />
+<h1> Question 1 </h1>
+<br />
+  <table>
+  <tr>
+   <td width="40%">
+         <h2> {{question1}} according to the image</h2>
+          <h3> Question instructions </h3>
+
+              <p id="tip1" hidden="true">{{tip1}}</p>
+              <ul id="list1" style="max-width:90%; word-wrap:break-word;">
+              </ul>
+              <br />
+     					<cml:text label="Your answer is:" validates="required integer integerRange:{min:0,max:100}" gold="true" name="question1" aggregation="all"></cml:text>
+    </td>
+    
+    <td width="60%">
+        <div class="html-element-wrapper">  
+          <div>    
+            <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}" /></p>
+            </div>
+          </div>
+    </td>
+    </tr>
+  </table>
+  
+
+  
+  <hr />
+<h1> Question 2 </h1>
+  <br />
+  <table>
+  <tr>
+   <td width="40%">
+        <h2> {{question2}} according to the image</h2>
+        <h3> Question instructions </h3>
+          <p id="tip2" hidden="true">{{tip2}}</p>
+            <ul id="list2" style="max-width:90%; word-wrap:break-word;">
+            </ul>
+            <br />
+					<cml:text label="Your answer is:" validates="required integer integerRange:{min:0,max:100}" gold="true" name="question2" aggregation="all"></cml:text>
+     </td>
+    
+    <td width="60%">
+      <div class="html-element-wrapper">  
+          <div>         
+            <p style="text-align: center;"><img class="fr-fin fr-dii" id="" src="{{image_url}}" /></p>
+            </div>
+          </div>
+   </td>
+    </tr>
+  </table>
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+
+
+//Getting all list elements of the page
+var elements = document.getElementsByTagName("ul");
+var firstPosition = 0;
+var firstListID = "list1";
+for (i = 0; i < elements.length; i++){
+  	if (elements[i].id != firstListID){
+      	firstPosition++;
+    }else{
+      break;
+    }
+}
+
+//Getting tip value and formating its presentation
+var tipValue = document.getElementById('tip1').firstChild.wholeText;
+var values = tipValue.split("|");
+//var list = document.getElementById('list1');
+var listValues = [elements[firstPosition], elements[firstPosition+2], elements[firstPosition+4], elements[firstPosition+6]];
+for (var j=0; j < listValues.length; j++){
+    for(var i=0; i<values.length; i++) {
+        var entry = document.createElement('li');
+        entry.appendChild(document.createTextNode(values[i]));
+        //list.appendChild(entry);
+      listValues[j].appendChild(entry);
+    }
+}  
+
+
+tipValue = document.getElementById('tip2').firstChild.wholeText;
+values = tipValue.split("|");
+//list = document.getElementById('list2');
+listValues = [elements[firstPosition+1], elements[firstPosition+3], elements[firstPosition+5], elements[firstPosition+7]];
+for (var j=0; j < listValues.length; j++){
+  for(var i=0; i<values.length; i++) {
+      var entry = document.createElement('li');
+      entry.appendChild(document.createTextNode(values[i]));
+      //list.appendChild(entry);
+    listValues[j].appendChild(entry);
+  }
+}
+
+
+Help us to characterize the urban design of the city of Campina Grande, Paraíba, Brazil.
+
+Overview
+
+In this task you will be presented with  image of the city of Campina Grande and asked to enter information about the urban environment of the city.
+
+We Provide
+
+In this task we will provide an image of a place to be evaluated according to some questions.
+
+Process - for each question
+
+Read the instructions for the question and build your estimations based on these instructions
+Examine the image displayed next to it
+Answer the question
+Tips
+
+The image to be evaluated is displayed next to each question to make your job easier;
+All questions must be answered considering the whole image;
+Questions must be answered with values greater than or equal to 0.
+Summary
+
+Characterize aspects of the urban design of streets of Campina Grande, Paraíba
+
+
+
+Thank you for your careful work on this task!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
